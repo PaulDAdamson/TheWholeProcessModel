@@ -1,2 +1,2 @@
 # TheWholeProcessModel
-complex physical system modeling
+A Unified, Vector Process Model of the Functional Multiverse
