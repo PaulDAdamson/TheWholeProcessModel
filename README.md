@@ -1,2 +1,2 @@
 # TheWholeProcessModel
-A Unified, Vector Process Model of the Functional Multiverse
+A Unified, Vector Process (UVP) Model of the Functional Multiverse
