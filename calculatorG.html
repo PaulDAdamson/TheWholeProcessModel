@@ -1,0 +1,1825 @@
+﻿<HTML>
+<HEAD id="header">
+<TITLE id="title">Calculator G</TITLE>
+<!--
+https://pauldadamson.github.io/TheWholeProcessModel/calculator1
+<script src="https://cdn.jsdelivr.net/npm/decimal.js@10.2.0/decimal.js"></script>
+<script src="https://gitcdn.link/repo/MikeMcl/decimal.js/master/decimal.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.2.0/decimal.js"></script>
+<script src="decimal.js"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.2.0/decimal.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+	H1 {margin: 12px 9px 9px 9px; font-size: 32; font-weight: 100;}
+	H2 {margin: 12px 9px 9px 9px; font-size: 24; font-weight: 100;}
+	H3 {margin: 12px 9px 9px 9px; text-align: center; font-size: 18; font-weight: 400; color: green;}
+	H4 {margin: 12px 9px 9px 9px; font-size: 14; font-weight: 100; color: green;}
+	H5 {margin: 12px 9px 9px 9px; font-size: 14; font-weight: 100; font: monospace;}
+</style>
+</HEAD>
+<BODY id="body">
+        <div><img src="./curvature.png" alt="Image could not be loaded."></div>
+	<div id="TRIMCON">
+		<h4>This was authored by Paul D. Adamson, and posted, with all rights reserved, on September 2, 2020.  It requires javascript, with Mike Mclaughlin's decimal.js.</h4>
+		<h1>Super Relativistic, Rescaling Calculator of Universal Constants; a Component</h1>
+		<h1>of the Unified, Vector Process (UVP) Model of the Functional Multiverse</h1>
+		<h2>Working the Puzzle:  A Revision of Calculator 9</h2>
+		<div class="slidecontainer">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c0Range0">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c0Range1">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c0Range2">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c0Range3">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c0Range4">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c0Range5">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c0Range6">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="c0Range7">
+		</div>
+		<div class="slidecontainer">
+                    <input type="range" min="0" max="202" value="202" class="slider" id="c3Range0">
+                    <input type="range" min="0" max="198" value="124" class="slider" id="c3Range1">
+                    <input type="range" min="0" max="198" value="149" class="slider" id="c3Range2">
+                    <input type="range" min="0" max="198" value="99" class="slider" id="c3Range3">
+                    <input type="range" min="0" max="198" value="99" class="slider" id="c3Range4">
+                    <input type="range" min="0" max="198" value="99" class="slider" id="c3Range5">
+                    <input type="range" min="0" max="198" value="99" class="slider" id="c3Range6">
+                    <input type="range" min="0" max="200" value="100" class="slider" id="c3Range7">
+		</div>
+		<div class="slidecontainer">
+                    <input type="range" min="0" max="198" value="99" class="slider" id="c4Range0">
+                    <input type="range" min="0" max="198" value="99" class="slider" id="c4Range1">
+                    <input type="range" min="0" max="198" value="99" class="slider" id="c4Range2">
+                    <input type="range" min="0" max="198" value="99" class="slider" id="c4Range3">
+                    <input type="range" min="0" max="198" value="99" class="slider" id="c4Range4">
+                    <input type="range" min="0" max="198" value="99" class="slider" id="c4Range5">
+                    <input type="range" min="0" max="198" value="99" class="slider" id="c4Range6">
+                    <input type="range" min="0" max="200" value="100" class="slider" id="c4Range7">
+		</div>
+		<div class="slidecontainer" id="div0">
+                    <input type="range" min="0" max="99" value="50" class="slider" id="c5Range0">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c5Range1">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c5Range2">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c5Range3">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c5Range4">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c5Range5">
+                    <input type="range" min="0" max="99" value="0" class="slider" id="c5Range6">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="c5Range7">
+		</div>
+		<div>
+                    <button id="reset" type="button">Standard Set</button>
+                    <button id="specialcase0" type="button">Reference Set</button>
+                    <button id="specialcase3" type="button">Ideal Set</button>
+                    <button id="max" type="button">max curvature st</button>
+                    <button id="mean" type="button">mean curvature st</button>
+                    <button id="min" type="button">min curvature st</button>
+		</div>
+	</div>
+    <SCRIPT LANGUAGE="JavaScript">
+        var vtitle = document.getElementById("title");
+        var vheader = document.getElementById("header");
+        var vbody = document.getElementById("body");
+
+        var sc00        = document.getElementById("c0Range0"); var sc00v = 99; sc00.oninput = function() {sc00v = this.value; compute();};
+        var sc01        = document.getElementById("c0Range1"); var sc01v = 99; sc01.oninput = function() {sc01v = this.value; compute();};
+        var sc02        = document.getElementById("c0Range2"); var sc02v = 99; sc02.oninput = function() {sc02v = this.value; compute();};
+        var sc03        = document.getElementById("c0Range3"); var sc03v = 99; sc03.oninput = function() {sc03v = this.value; compute();};
+        var sc04        = document.getElementById("c0Range4"); var sc04v = 99; sc04.oninput = function() {sc04v = this.value; compute();};
+        var sc05        = document.getElementById("c0Range5"); var sc05v = 99; sc05.oninput = function() {sc05v = this.value; compute();};
+        var sc06        = document.getElementById("c0Range6"); var sc06v = 99; sc06.oninput = function() {sc06v = this.value; compute();};
+        var sc07        = document.getElementById("c0Range7"); var sc07v = 100; sc07.oninput = function() {sc07v = this.value; compute();};
+
+        var sc30        = document.getElementById("c3Range0"); var sc30v = 0; sc30.oninput = function() {sc30v = this.value; compute();};
+        var sc31        = document.getElementById("c3Range1"); var sc31v = 0; sc31.oninput = function() {sc31v = this.value; compute();};
+        var sc32        = document.getElementById("c3Range2"); var sc32v = 0; sc32.oninput = function() {sc32v = this.value; compute();};
+        var sc33        = document.getElementById("c3Range3"); var sc33v = 0; sc33.oninput = function() {sc33v = this.value; compute();};
+        var sc34        = document.getElementById("c3Range4"); var sc34v = 0; sc34.oninput = function() {sc34v = this.value; compute();};
+        var sc35        = document.getElementById("c3Range5"); var sc35v = 0; sc35.oninput = function() {sc35v = this.value; compute();};
+        var sc36        = document.getElementById("c3Range6"); var sc36v = 0; sc36.oninput = function() {sc36v = this.value; compute();};
+        var sc37        = document.getElementById("c3Range7"); var sc37v = 0; sc37.oninput = function() {sc37v = this.value; compute();};
+
+        var sc40        = document.getElementById("c4Range0"); var sc40v = 149; sc40.oninput = function() {sc40v = this.value; compute();};
+        var sc41        = document.getElementById("c4Range1"); var sc41v = 99; sc41.oninput = function() {sc41v = this.value; compute();};
+        var sc42        = document.getElementById("c4Range2"); var sc42v = 99; sc42.oninput = function() {sc42v = this.value; compute();};
+        var sc43        = document.getElementById("c4Range3"); var sc43v = 99; sc43.oninput = function() {sc43v = this.value; compute();};
+        var sc44        = document.getElementById("c4Range4"); var sc44v = 99; sc44.oninput = function() {sc44v = this.value; compute();};
+        var sc45        = document.getElementById("c4Range5"); var sc45v = 99; sc45.oninput = function() {sc45v = this.value; compute();};
+        var sc46        = document.getElementById("c4Range6"); var sc46v = 99; sc46.oninput = function() {sc46v = this.value; compute();};
+        var sc47        = document.getElementById("c4Range7"); var sc47v = 100; sc47.oninput = function() {sc47v = this.value; compute();};
+
+        var sc50        = document.getElementById("c5Range0"); var sc50v = 50; sc50.oninput = function() {sc50v = this.value; compute();};
+        var sc51        = document.getElementById("c5Range1"); var sc51v = 0; sc51.oninput = function() {sc51v = this.value; compute();};
+        var sc52        = document.getElementById("c5Range2"); var sc52v = 0; sc52.oninput = function() {sc52v = this.value; compute();};
+        var sc53        = document.getElementById("c5Range3"); var sc53v = 0; sc53.oninput = function() {sc53v = this.value; compute();};
+        var sc54        = document.getElementById("c5Range4"); var sc54v = 0; sc54.oninput = function() {sc54v = this.value; compute();};
+        var sc55        = document.getElementById("c5Range5"); var sc55v = 0; sc55.oninput = function() {sc55v = this.value; compute();};
+        var sc56        = document.getElementById("c5Range6"); var sc56v = 0; sc56.oninput = function() {sc56v = this.value; compute();};
+        var sc57        = document.getElementById("c5Range7"); var sc57v = 0; sc57.oninput = function() {sc57v = this.value; compute();};
+
+        var breset      = document.getElementById("reset");
+        var bspcase1    = document.getElementById("specialcase1");
+        var bspcase2    = document.getElementById("specialcase2");
+        var bspcase3    = document.getElementById("specialcase3");
+        var bspcase0    = document.getElementById("specialcase0");
+        var bmax        = document.getElementById("max");
+        var bmean       = document.getElementById("mean");
+        var bmin        = document.getElementById("min");
+
+        var vdivx;
+        var vtblx;
+        var vrowx;
+        var vcelx;
+        var vtxtx;
+        vdivx = document.createElement("div"); vdivx.id = "div1"; vdivx.style.width = "768px"; vdivx.style.height = "128px"; vdivx.style.background = "black"; vdivx.style.color = "white"; vbody.appendChild(vdivx);
+        vtblx = document.createElement("table"); vtblx.id = "tbl1"; vtblx.style.width = "768px"; vtblx.style.height = "128px"; vtblx.style.background = "blue"; vtblx.style.color = "white"; vdivx.appendChild(vtblx);
+        for (let i = 0; i < 29; i++) {
+            vrowx = document.createElement("tr"); vrowx.style.width = "768px"; vrowx.style.height = "32px"; vrowx.style.background = "red"; vrowx.style.color = "white"; vtblx.appendChild(vrowx);
+            for (let ii = 0; ii < 5; ii++) {
+                vcelx = document.createElement("td"); vcelx.style.height = "32px"; vcelx.style.background = "blue"; vcelx.style.color = "white"; vtxtx = document.createTextNode("="); vcelx.appendChild(vtxtx); vrowx.appendChild(vcelx);
+                if(ii==0) {vcelx.align = "right"; vcelx.style.width = "1000px"};
+                if(ii==1) {vcelx.align = "center"; vcelx.style.width = "60px"};
+
+                if(ii==3) {vcelx.align = "left"; vcelx.style.width = "360px"};
+                if(ii==4) {vcelx.align = "left"; vcelx.style.width = "600px"};
+            };
+        };
+        function compute() {
+            Decimal.set({precision: 128, rounding:1, toExpPos: 10, toExpNeg: -2});
+            var v0                  = new Decimal(0);
+            var v1                  = new Decimal(0);
+            var v2                  = new Decimal(0);
+            var v3                  = new Decimal(0);
+            var v4                  = new Decimal(0);
+            var v5                  = new Decimal(0);
+            var v6                  = new Decimal(0);
+            var v7                  = new Decimal(0);
+            var e                   = new Decimal('2.718281828459045235360287471352662497757247093699959574966967627724076630353547594571382178525166427427466391932003059921817413596629043572900334295260595630738132328627943490763233829880753195251019011573834187930702154089149934884167509244761460668082264800168477411853742345442437107539077744992069551702761838606261331384583000752044933826560297606737113200709328709127443747047230696977209310141692836819025515108657463772111252389784425056953696770785449969967946864454905987931636889230098793127736178215424999229576351482208269895193668033182528869398496465105820939239829488793320362509443117301238197068416140397019837679320683282376464804295311802328782509819455815301756717361332069811250996181881593041690351598888519345807273866738589422879228499892086805825749279610484198444363463244968487560233624827041978623209002160990235304369941849146314093431738143640546253152096183690888707016768396424378140592714563549061303107208510383750510115747704171898610687396965521267154688957035035');
+            var sro2                = new Decimal('1.414213562373095048801688724209698078569671875376948073176679737990732478462107038850387534327641572735013846230912297024924836055850737212644121497099935831413222665927505592755799950501152782060571470109559971605970274534596862014728517418640889198609552329230484308714321450839762603627995251407989687253396546331808829640620615258352395054745750287759961729835575220337531857011354374603408498847160386899970699004815030544027790316454247823068492936918621580578463111596668713013015618568987237235288509264861249497715421833420428568606014682472077143585487415565706967765372022648544701585880162075847492265722600208558446652145839889394437092659180031138824646815708263010059485870400318648034219489727829064104507263688131373985525611732204024509122770022694112757362728049573810896750401836986836845072579936472906076299694138047565482372899718032680247442062926912485905218100445984215059112024944134172853147810580360337107730918286931471017111168391658172688941975871658215212822951848847');
+            var pi1                 = new Decimal('3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587006606315588174881520920962829254091715364367892590360011330530548820466521384146951941511609433057270365759591953092186117381932611793105118548074462379962749567351885752724891227938183011949129833673362440656643086021394946395224737190702179860943702770539217176293176752384674818467669405132000568127145263560827785771342757789609173637178721468440901224953430146549585371050792279689258923542019956112129021960864034418159813629774771309960518707211349999998372978049951059731732816096318595024459455346908302642522308253344685035261931188171010003137838752886587533208381420617177669147303598253490428755468731159562863882353787593751957781857780532171226806613001927876611195909216420198');
+                v0                  = Decimal.mul(pi1, 2);
+            var pi2                 = new Decimal(v0);
+
+            var Y0                  = new Decimal(0);
+            var Y1                  = new Decimal(0);
+            var Y2                  = new Decimal(0);
+            var Y3                  = new Decimal(0);
+            var X0                  = new Decimal(0);
+            var X1                  = new Decimal(0);
+            var X2                  = new Decimal(0);
+            var X3                  = new Decimal(0);
+            var slope_X2            = new Decimal(0);
+            var slope_X3            = new Decimal(0);
+
+            var Y4                  = new Decimal(0);
+            var Y5                  = new Decimal(0);
+            var Y6                  = new Decimal(0);
+            var Y7                  = new Decimal(0);
+            var X4                  = new Decimal(0);
+            var X5                  = new Decimal(0);
+            var X6                  = new Decimal(0);
+            var X7                  = new Decimal(0);
+            var slope_X6            = new Decimal(0);
+            var slope_X7            = new Decimal(0);
+
+            var c_slope0            = new Decimal(0);
+            var c_slope1            = new Decimal(0);
+            var c_slope2            = new Decimal(0);
+            var c_slope3            = new Decimal(0);
+            var c_pivot             = new Decimal(0);
+            var scaling_a           = new Decimal(0);
+
+            var scaled_st_lp        = new Decimal(0);
+            var scaled_st_tp0       = new Decimal(0);
+            var scaled_st_tp        = new Decimal(0);
+            var scaled_st_c         = new Decimal(0);
+            var rescaled_st_c       = new Decimal(0);
+            var rescaled_st_hbar    = new Decimal(0);
+            var rescaled_st_h       = new Decimal(0);
+            var scaled_st_hbar      = new Decimal(0);
+            var scaled_st_h         = new Decimal(0);
+            var scm_st              = new Decimal(0);
+            var scs_st              = new Decimal(0);
+            var sck_st              = new Decimal(0);
+            var sce_st              = new Decimal(0);
+            var rescaled_st_lp      = new Decimal(0);
+            var rescaled_st_tp      = new Decimal(0);
+            var scaled_st_wp        = new Decimal(0);
+            var rescaled_st_wp      = new Decimal(0);
+            var scaled_st_G         = new Decimal(0);
+            var rescaled_st_G       = new Decimal(0);
+            var scaled_st_mp        = new Decimal(0);
+            var rescaled_st_mp      = new Decimal(0);
+            var scaled_st_roke      = new Decimal(0);
+            var rescaled_st_roke    = new Decimal(0);
+            var rescaled_st_uae     = new Decimal(0);
+            var scaled_st_uae       = new Decimal(0);
+            var rescaled_st_ae      = new Decimal(0);
+            var scaled_st_ae        = new Decimal(0);
+            var rescaled_st_uaC     = new Decimal(0);
+            var rescaled_st_aC      = new Decimal(0);
+            var scaled_st_uaC       = new Decimal(0);
+            var scaled_st_aC        = new Decimal(0);
+            var rescaled_st_uaeV    = new Decimal(0);
+            var rescaled_st_aeV     = new Decimal(0);
+            var scaled_st_uaeV      = new Decimal(0);
+            var scaled_st_aeV       = new Decimal(0);
+            var rescaled_st_uaJ     = new Decimal(0);
+            var rescaled_st_aJ      = new Decimal(0);
+            var scaled_st_uaJ       = new Decimal(0);
+            var scaled_st_aJ        = new Decimal(0);
+            var rescaled_st_uaa     = new Decimal(0);
+            var rescaled_st_aa      = new Decimal(0);
+            var scaled_st_uaa       = new Decimal(0);
+            var scaled_st_aa        = new Decimal(0);
+            var rescaled_st_1ouaaG  = new Decimal(0);
+            var rescaled_st_1oaaG   = new Decimal(0);
+            var scaled_st_1ouaaG    = new Decimal(0);
+            var scaled_st_1oaaG     = new Decimal(0);
+            var rescaled_st_μ0      = new Decimal(0);
+            var rescaled_st_ke      = new Decimal(0);
+            var rescaled_st_ε0      = new Decimal(0);
+            var rescaled_st_Z0      = new Decimal(0);
+            var rescaled_st_Ta0     = new Decimal(0);
+            var scaled_st_μ0        = new Decimal(0);
+            var scaled_st_ke        = new Decimal(0);
+            var scaled_st_ε0        = new Decimal(0);
+            var scaled_st_Z0        = new Decimal(0);
+            var scaled_st_Ta0       = new Decimal(0);
+            var scaled_st_Rk        = new Decimal(0);
+            var scaled_st_G0        = new Decimal(0);
+            var scaled_st_Kj        = new Decimal(0);
+            var rescaled_st_Rk      = new Decimal(0);
+            var rescaled_st_G0      = new Decimal(0);
+            var rescaled_st_Kj      = new Decimal(0);
+            var scaled_st_crL2      = new Decimal(0);
+            var rescaled_st_crL2    = new Decimal(0);
+            var scaled_st_crW2      = new Decimal(0);
+            var rescaled_st_crW2    = new Decimal(0);
+            var scaled_st_ccrL2ps   = new Decimal(0);
+            var rescaled_st_ccrL2ps = new Decimal(0);
+            var scaled_st_ccrW2ps   = new Decimal(0);
+            var rescaled_st_ccrW2ps = new Decimal(0);
+            var scaled_st_freqL2    = new Decimal(0);
+            var rescaled_st_freqL2  = new Decimal(0);
+            var scaled_st_freqW2    = new Decimal(0);
+            var rescaled_st_freqW2  = new Decimal(0);
+            var scaled_st_crL1      = new Decimal(0);
+            var rescaled_st_crL1    = new Decimal(0);
+            var scaled_st_crW1      = new Decimal(0);
+            var rescaled_st_crW1    = new Decimal(0);
+            var scaled_st_ccrL1ps   = new Decimal(0);
+            var rescaled_st_ccrL1ps = new Decimal(0);
+            var scaled_st_ccrW1ps   = new Decimal(0);
+            var rescaled_st_ccrW1ps = new Decimal(0);
+            var scaled_st_freqL1    = new Decimal(0);
+            var rescaled_st_freqL1  = new Decimal(0);
+            var scaled_st_freqW1    = new Decimal(0);
+            var rescaled_st_freqW1  = new Decimal(0);
+            var scaled_st_lmdaL1    = new Decimal(0);
+            var scaled_st_lmdaW1    = new Decimal(0);
+            var scaled_st_lmdaL2    = new Decimal(0);
+            var scaled_st_lmdaW2    = new Decimal(0);
+            var rescaled_st_lmdaL1  = new Decimal(0);
+            var rescaled_st_lmdaW1  = new Decimal(0);
+            var rescaled_st_lmdaL2  = new Decimal(0);
+            var rescaled_st_lmdaW2  = new Decimal(0);
+
+            var scaled_ts_crL2      = new Decimal(0);
+            var scaled_ts_lp        = new Decimal(0);
+            var scaled_ts_tp0       = new Decimal(0);
+            var scaled_ts_tp        = new Decimal(0);
+            var scaled_ts_c         = new Decimal(0);
+            var rescaled_ts_c       = new Decimal(0);
+            var rescaled_ts_hbar    = new Decimal(0);
+            var rescaled_ts_h       = new Decimal(0);
+            var scaled_ts_hbar      = new Decimal(0);
+            var scaled_ts_h         = new Decimal(0);
+            var scm_ts              = new Decimal(0);
+            var scs_ts              = new Decimal(0);
+            var sck_ts              = new Decimal(0);
+            var sce_ts              = new Decimal(0);
+            var rescaled_ts_lp      = new Decimal(0);
+            var rescaled_ts_tp      = new Decimal(0);
+            var scaled_ts_wp        = new Decimal(0);
+            var rescaled_ts_wp      = new Decimal(0);
+            var scaled_ts_G         = new Decimal(0);
+            var rescaled_ts_G       = new Decimal(0);
+            var scaled_ts_mp        = new Decimal(0);
+            var rescaled_ts_mp      = new Decimal(0);
+            var scaled_ts_roke      = new Decimal(0);
+            var rescaled_ts_roke    = new Decimal(0);
+            var rescaled_ts_uae     = new Decimal(0);
+            var scaled_ts_uae       = new Decimal(0);
+            var rescaled_ts_ae      = new Decimal(0);
+            var scaled_ts_ae        = new Decimal(0);
+            var rescaled_ts_uaC     = new Decimal(0);
+            var rescaled_ts_aC      = new Decimal(0);
+            var scaled_ts_uaC       = new Decimal(0);
+            var scaled_ts_aC        = new Decimal(0);
+            var rescaled_ts_uaeV    = new Decimal(0);
+            var rescaled_ts_aeV     = new Decimal(0);
+            var scaled_ts_uaeV      = new Decimal(0);
+            var scaled_ts_aeV       = new Decimal(0);
+            var rescaled_ts_uaJ     = new Decimal(0);
+            var rescaled_ts_aJ      = new Decimal(0);
+            var scaled_ts_uaJ       = new Decimal(0);
+            var scaled_ts_aJ        = new Decimal(0);
+            var rescaled_ts_uaa     = new Decimal(0);
+            var rescaled_ts_aa      = new Decimal(0);
+            var scaled_ts_uaa       = new Decimal(0);
+            var scaled_ts_aa        = new Decimal(0);
+            var rescaled_ts_1ouaaG  = new Decimal(0);
+            var rescaled_ts_1oaaG   = new Decimal(0);
+            var scaled_ts_1ouaaG    = new Decimal(0);
+            var scaled_ts_1oaaG     = new Decimal(0);
+            var rescaled_ts_μ0      = new Decimal(0);
+            var rescaled_ts_ke      = new Decimal(0);
+            var rescaled_ts_ε0      = new Decimal(0);
+            var rescaled_ts_Z0      = new Decimal(0);
+            var rescaled_ts_Ta0     = new Decimal(0);
+            var scaled_ts_μ0        = new Decimal(0);
+            var scaled_ts_ke        = new Decimal(0);
+            var scaled_ts_ε0        = new Decimal(0);
+            var scaled_ts_Z0        = new Decimal(0);
+            var scaled_ts_Ta0       = new Decimal(0);
+            var scaled_ts_Rk        = new Decimal(0);
+            var scaled_ts_G0        = new Decimal(0);
+            var scaled_ts_Kj        = new Decimal(0);
+            var rescaled_ts_Rk      = new Decimal(0);
+            var rescaled_ts_G0      = new Decimal(0);
+            var rescaled_ts_Kj      = new Decimal(0);
+            var rescaled_ts_crL2    = new Decimal(0);
+            var scaled_ts_crW2      = new Decimal(0);
+            var rescaled_ts_crW2    = new Decimal(0);
+            var scaled_ts_ccrL2ps   = new Decimal(0);
+            var rescaled_ts_ccrL2ps = new Decimal(0);
+            var scaled_ts_ccrW2ps   = new Decimal(0);
+            var rescaled_ts_ccrW2ps = new Decimal(0);
+            var scaled_ts_freqL2    = new Decimal(0);
+            var rescaled_ts_freqL2  = new Decimal(0);
+            var scaled_ts_freqW2    = new Decimal(0);
+            var rescaled_ts_freqW2  = new Decimal(0);
+            var scaled_ts_crL1      = new Decimal(0);
+            var rescaled_ts_crL1    = new Decimal(0);
+            var scaled_ts_crW1      = new Decimal(0);
+            var rescaled_ts_crW1    = new Decimal(0);
+            var scaled_ts_ccrL1ps   = new Decimal(0);
+            var rescaled_ts_ccrL1ps = new Decimal(0);
+            var scaled_ts_ccrW1ps   = new Decimal(0);
+            var rescaled_ts_ccrW1ps = new Decimal(0);
+            var scaled_ts_freqL1    = new Decimal(0);
+            var rescaled_ts_freqL1  = new Decimal(0);
+            var scaled_ts_freqW1    = new Decimal(0);
+            var rescaled_ts_freqW1  = new Decimal(0);
+            var scaled_ts_lmdaL1    = new Decimal(0);
+            var scaled_ts_lmdaW1    = new Decimal(0);
+            var scaled_ts_lmdaL2    = new Decimal(0);
+            var scaled_ts_lmdaW2    = new Decimal(0);
+            var rescaled_ts_lmdaL1  = new Decimal(0);
+            var rescaled_ts_lmdaW1  = new Decimal(0);
+            var rescaled_ts_lmdaL2  = new Decimal(0);
+            var rescaled_ts_lmdaW2  = new Decimal(0);
+
+            var control0            = new Decimal(0);
+                v0                  = Decimal.sub(sc00v, 99);
+                v0                  = Decimal.mul(v0, '1e-2');
+                v1                  = v0;
+                v0                  = Decimal.sub(sc01v, 99);
+                v0                  = Decimal.mul(v0, '1e-4');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc02v, 99);
+                v0                  = Decimal.mul(v0, '1e-6');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc03v, 99);
+                v0                  = Decimal.mul(v0, '1e-8');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc04v, 99);
+                v0                  = Decimal.mul(v0, '1e-10');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc05v, 99);
+                v0                  = Decimal.mul(v0, '1e-12');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc06v, 99);
+                v0                  = Decimal.mul(v0, '1e-14');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc07v, 100);
+                v0                  = Decimal.mul(v0, '1e-16');
+                control0            = Decimal.add(v1, v0);
+                control0            = Decimal.pow('1.000328392723697439170476767554181735685005478126385397825838478581002616289686754314222', control0);
+                Y0                  = Decimal.mul('1.471017056096671914024202858671405853502320021288368569710951766227026128903940057551415e-2', control0);
+                Y1                  = Decimal.mul('0.8750056950347712848963556498750813482871397424767876815645920512746627683879229994473350', control0);
+                Y2                  = Decimal.mul('0.9982215284271269865353246799559299415322377718524763808730886510475620946205638665505609', control0);
+                Y3                  = Decimal.mul('1.015038563284664158310718796140895794220028678339269083522947996243272877578726154889736', control0);
+//              X0                  = 0;
+                X1                  = Decimal.mul(sro2, '1e-35');
+                v0                  = Decimal.sub(Y1, Y0);
+                slope_X3            = Decimal.div(v0, X1);
+                X3                  = Decimal.div('1.0', slope_X3);
+                slope_X2            = Decimal.div(Y1, X1);
+                X2                  = Decimal.div('1.0', slope_X2);
+
+                control3            = new Decimal(0);
+                v0                  = Decimal.add(sc30v, 414);
+                v0                  = Decimal.mul(v0, '1e-3');
+                v1                  = v0;
+                v0                  = Decimal.sub(sc31v, 99);
+                v0                  = Decimal.mul(v0, '1e-5');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc32v, 99);
+                v0                  = Decimal.mul(v0, '1e-7');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc33v, 99);
+                v0                  = Decimal.mul(v0, '1e-9');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc34v, 99);
+                v0                  = Decimal.mul(v0, '1e-11');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc35v, 99);
+                v0                  = Decimal.mul(v0, '1e-13');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc36v, 99);
+                v0                  = Decimal.mul(v0, '1e-15');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc37v, 100);
+                v0                  = Decimal.mul(v0, '1e-17');
+                v1                  = Decimal.add(v1, v0);
+                v1                  = Decimal.add(v1, 1);
+                control3            = Decimal.mul(v1, '1e-35');
+            var Limita0             = new Decimal(X1);
+            var Limitb0             = new Decimal(X2);
+                v1                  = Decimal.sub(control3, Limita0);
+                v1                  = Decimal.sign(v1);
+                v2                  = Decimal.sub(Limitb0, control3);
+                v2                  = Decimal.sign(v2);
+                if(v1<0) {control3  = Limita0;};
+                if(v2<0) {control3  = Limitb0;};
+
+            var control4            = new Decimal(0);
+                v0                  = Decimal.sub(sc40v, 99);
+                v0                  = Decimal.mul(v0, '1e-2');
+                v1                  = v0;
+                v0                  = Decimal.sub(sc41v, 99);
+                v0                  = Decimal.mul(v0, '1e-4');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc42v, 99);
+                v0                  = Decimal.mul(v0, '1e-6');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc43v, 99);
+                v0                  = Decimal.mul(v0, '1e-8');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc44v, 99);
+                v0                  = Decimal.mul(v0, '1e-10');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc45v, 99);
+                v0                  = Decimal.mul(v0, '1e-12');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc46v, 99);
+                v0                  = Decimal.mul(v0, '1e-14');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc47v, 100);
+                v0                  = Decimal.mul(v0, '1e-16');
+                control4            = Decimal.add(v1, v0);
+
+                v0                  = Decimal.div('1.0', Y2);
+                c_slope0            = new Decimal(v0);
+
+                v0                  = Decimal.mul(control4, 2);
+                v1                  = Decimal.pow(c_slope0, v0);
+                v2                  = Decimal.div(c_slope0, v1);
+                c_slope0            = v1;
+
+                c_slope1            = v2;
+
+                v0                  = Decimal.mul(c_slope1, c_slope1);
+                c_slope2            = v0;
+
+                v0                  = Decimal.mul(c_slope2, c_slope1);
+                c_slope3            = v0;
+
+                v0                  = Decimal.mul(pi1,'1e-26');
+                c_pivot             = v0;
+
+                scaled_st_lp        = control3;
+
+                v0                  = Decimal.div(scaled_st_lp,'299792458');
+                scaled_st_tp0       = v0;
+
+                v0                  = Decimal.mul(scaled_st_tp0, c_slope0);
+                scaled_st_tp        = v0;
+
+                v0                  = Decimal.div(scaled_st_lp, scaled_st_tp);
+                scaled_st_c         = v0;
+
+                v0                  = Decimal.div(scaled_st_c, c_slope1);
+                rescaled_st_c       = v0;
+
+                v0                  = Decimal.div(c_pivot, rescaled_st_c);
+                rescaled_st_hbar    = v0;
+
+                v0                  = Decimal.mul(rescaled_st_hbar, pi2);
+                rescaled_st_h       = v0;
+
+                v0                  = Decimal.mul(rescaled_st_hbar, c_slope2);
+                scaled_st_hbar      = v0;
+
+                v0                  = Decimal.mul(scaled_st_hbar, pi2);
+                scaled_st_h         = v0;
+
+                v0                  = Decimal.div(scaled_st_lp, Limita0);
+                scm_st              = v0;
+
+                v0                  = Decimal.div(scm_st, c_slope1);
+                scs_st              = v0;
+
+                v0                  = Decimal.div(1, scs_st);
+                sck_st              = v0;
+
+                v0                  = Decimal.div(scaled_st_lp, Limitb0);
+                v1                  = Decimal.div(v0, c_slope1);
+                sce_st              = v1;
+
+                v0                  = Decimal.div(scaled_st_lp, scm_st);
+                rescaled_st_lp      = v0;
+
+                v0                  = Decimal.div(rescaled_st_lp, rescaled_st_c);
+                rescaled_st_tp      = v0;
+
+                v0                  = Decimal.pow(scaled_st_lp, 2);
+                v1                  = Decimal.div(v0, '1e-35');
+                scaled_st_wp        = v1;
+
+                v0                  = Decimal.pow(rescaled_st_lp, 2);
+                v1                  = Decimal.div(v0, '1e-35');
+                rescaled_st_wp      = v1;
+
+                v0                  = Decimal.pow(scaled_st_lp, 2);
+                v1                  = Decimal.pow(scaled_st_c, 3);
+                v2                  = Decimal.mul(v0, v1);
+                v3                  = Decimal.div(v2, scaled_st_hbar);
+                scaled_st_G         = v3;
+
+                v0                  = Decimal.pow(rescaled_st_lp, 2);
+                v1                  = Decimal.pow(rescaled_st_c, 3);
+                v2                  = Decimal.mul(v0, v1);
+                v3                  = Decimal.div(v2, rescaled_st_hbar);
+                rescaled_st_G       = v3;
+
+                v0                  = Decimal.mul(scaled_st_hbar, scaled_st_c);
+                v1                  = Decimal.div(v0, scaled_st_G);
+                v2                  = Decimal.pow(v1, '0.5');
+                scaled_st_mp        = v2;
+
+                v0                  = Decimal.mul(rescaled_st_hbar, rescaled_st_c);
+                v1                  = Decimal.div(v0, rescaled_st_G);
+                v2                  = Decimal.pow(v1, '0.5');
+                rescaled_st_mp      = v2;
+
+                v0                  = Decimal.pow('1e-7', '0.5');
+                scaled_st_roke      = v0;
+
+                v0                  = Decimal.div(scaled_st_roke, scm_st);
+                rescaled_st_roke    = v0;
+
+                v0                  = Decimal.mul(sro2, '1e-19');
+                rescaled_st_uae     = v0;
+
+                v0                  = Decimal.pow(sck_st,-1);
+                v1                  = Decimal.pow(scm_st,-2);
+                v2                  = Decimal.pow(scs_st, 2);
+                v3                  = Decimal.mul(v0, v1);
+                v4                  = Decimal.mul(v3, v2);
+                v5                  = Decimal.mul(rescaled_st_uae, v4);
+                scaled_st_uae       = v5;
+
+                v0                  = Decimal.mul(rescaled_st_uae, sce_st);
+                rescaled_st_ae      = v0;
+
+                v0                  = Decimal.mul(scaled_st_uae, sce_st);
+                scaled_st_ae        = v0;
+
+                v0                  = Decimal.pow(rescaled_st_uae, -1);
+                rescaled_st_uaC     = v0;
+
+                v0                  = Decimal.pow(rescaled_st_ae, -1);
+                rescaled_st_aC      = v0;
+
+                v0                  = Decimal.pow(scaled_st_uae, -1);
+                scaled_st_uaC       = v0;
+
+                v0                  = Decimal.pow(scaled_st_ae, -1);
+                scaled_st_aC        = v0;
+
+                rescaled_st_uaeV    = rescaled_st_uae;
+                rescaled_st_aeV     = rescaled_st_ae;
+                scaled_st_uaeV      = scaled_st_uae;
+                scaled_st_aeV       = scaled_st_ae;
+                rescaled_st_uaJ     = rescaled_st_uaC;
+                rescaled_st_aJ      = rescaled_st_aC;
+                scaled_st_uaJ       = scaled_st_uaC;
+                scaled_st_aJ        = scaled_st_aC;
+
+                v0                  = Decimal.pow(sck_st,-3);
+                v1                  = Decimal.pow(scm_st,-3);
+                v2                  = Decimal.pow(scs_st, 4);
+                v3                  = Decimal.mul(v0, v1);
+                v4                  = Decimal.mul(v3, v2);
+                scaling_a           = v4;
+
+                v0                  = Decimal.mul(rescaled_st_uae, rescaled_st_roke);
+                v1                  = Decimal.pow(v0, 2);
+                v2                  = Decimal.mul(v1, rescaled_st_c);
+                v3                  = Decimal.div(v2, rescaled_st_hbar);
+                rescaled_st_uaa     = v3;
+
+                v0                  = Decimal.mul(rescaled_st_ae, rescaled_st_roke);
+                v1                  = Decimal.pow(v0, 2);
+                v2                  = Decimal.mul(v1, rescaled_st_c);
+                v3                  = Decimal.div(v2, rescaled_st_hbar);
+                rescaled_st_aa      = v3;
+
+                v0                  = Decimal.mul(scaled_st_uae, scaled_st_roke);
+                v1                  = Decimal.pow(v0, 2);
+                v2                  = Decimal.mul(v1, scaled_st_c);
+                v3                  = Decimal.div(v2, scaled_st_hbar);
+                scaled_st_uaa       = v3;
+
+                v0                  = Decimal.mul(scaled_st_ae, scaled_st_roke);
+                v1                  = Decimal.pow(v0, 2);
+                v2                  = Decimal.mul(v1, scaled_st_c);
+                v3                  = Decimal.div(v2, scaled_st_hbar);
+                scaled_st_aa        = v3;
+
+                v0                  = Decimal.mul(rescaled_st_uaa, rescaled_st_G);
+                v1                  = Decimal.div(1, v0);
+                rescaled_st_1ouaaG  = v1;
+
+                v0                  = Decimal.mul(rescaled_st_aa, rescaled_st_G);
+                v1                  = Decimal.div(1, v0);
+                rescaled_st_1oaaG   = v1;
+
+                v0                  = Decimal.mul(scaled_st_uaa, scaled_st_G);
+                v1                  = Decimal.div(1, v0);
+                scaled_st_1ouaaG    = v1;
+
+                v0                  = Decimal.mul(scaled_st_aa, scaled_st_G);
+                v1                  = Decimal.div(1, v0);
+                scaled_st_1oaaG     = v1;
+
+                v0                  = Decimal.pow(rescaled_st_roke, 2);
+                v1                  = Decimal.mul(4, pi1);
+                v2                  = Decimal.mul(v1, v0);
+                rescaled_st_μ0      = v2;
+
+                v2                  = Decimal.pow(rescaled_st_c, 2);
+                v3                  = Decimal.mul(v2, v0);
+                rescaled_st_ke      = v3;
+
+                v3                  = Decimal.div(1, v2);
+                v4                  = Decimal.div(v3, rescaled_st_μ0);
+                rescaled_st_ε0      = v4;
+
+                v0                  = Decimal.mul(rescaled_st_ε0, rescaled_st_c);
+                v1                  = Decimal.div(1, v0);
+                rescaled_st_Z0      = v1;
+
+                rescaled_st_Ta0     = rescaled_st_Z0;
+
+                v0                  = Decimal.pow(scaled_st_roke, 2);
+                v1                  = Decimal.mul(4, pi1);
+                v2                  = Decimal.mul(v1, v0);
+                scaled_st_μ0        = v2;
+
+                v2                  = Decimal.pow(scaled_st_c, 2);
+                v3                  = Decimal.mul(v2, v0);
+                scaled_st_ke        = v3;
+
+                v3                  = Decimal.div(1, v2);
+                v4                  = Decimal.div(v3, scaled_st_μ0);
+                scaled_st_ε0        = v4;
+
+                v0                  = Decimal.mul(scaled_st_ε0, scaled_st_c);
+                v1                  = Decimal.div(1, v0);
+                scaled_st_Z0        = v1;
+
+                scaled_st_Ta0       = scaled_st_Z0;
+
+                v0                  = Decimal.mul(scaled_st_ae, scaled_st_ae);
+                v1                  = Decimal.div(scaled_st_h, v0);
+                scaled_st_Rk        = v1;
+
+                v0                  = Decimal.div('2.0', scaled_st_Rk);
+                scaled_st_G0        = v0;
+
+                v0                  = Decimal.mul('2.0', scaled_st_ae);
+                v1                  = Decimal.div(v0, scaled_st_h);
+                scaled_st_Kj        = v1;
+
+                v0                  = Decimal.mul(rescaled_st_ae, rescaled_st_ae);
+                v1                  = Decimal.div(rescaled_st_h, v0);
+                rescaled_st_Rk      = v1;
+
+                v0                  = Decimal.div('2.0', rescaled_st_Rk);
+                rescaled_st_G0      = v0;
+
+                v0                  = Decimal.mul('2.0', rescaled_st_ae);
+                v1                  = Decimal.div(v0, rescaled_st_h);
+                rescaled_st_Kj      = v1;
+
+                v0                  = Decimal.div(scaled_st_lp, 2);
+                scaled_st_crL2      = v0;
+
+                v0                  = Decimal.div(rescaled_st_lp, 2);
+                rescaled_st_crL2    = v0;
+
+                v0                  = Decimal.div(scaled_st_wp, pi1);					
+                scaled_st_crW2      = v0;
+
+                v0                  = Decimal.div(rescaled_st_wp, pi1);
+                rescaled_st_crW2    = v0;
+
+                v0                  = Decimal.div(scaled_st_c, scaled_st_crL2);
+                scaled_st_ccrL2ps   = v0;
+
+                v0                  = Decimal.div(rescaled_st_c, rescaled_st_crL2);
+                rescaled_st_ccrL2ps = v0;
+
+                v0                  = Decimal.div(scaled_st_c, scaled_st_crW2);
+                scaled_st_ccrW2ps   = v0;
+
+                v0                  = Decimal.div(rescaled_st_c, rescaled_st_crW2);
+                rescaled_st_ccrW2ps = v0;
+
+                v0                  = Decimal.div(scaled_st_ccrL2ps, pi2);
+                scaled_st_freqL2    = v0;
+
+                v0                  = Decimal.div(rescaled_st_ccrL2ps, pi2);
+                rescaled_st_freqL2  = v0;
+
+                v0                  = Decimal.div(scaled_st_ccrW2ps, pi2);
+                scaled_st_freqW2    = v0;
+
+                v0                  = Decimal.div(rescaled_st_ccrW2ps, pi2);
+                rescaled_st_freqW2  = v0;
+
+                v0                  = Decimal.pow(scaled_st_crL2, '0.5');
+                scaled_st_crL1      = v0;
+
+                v0                  = Decimal.pow(rescaled_st_crL2, '0.5');
+                rescaled_st_crL1    = v0;
+
+                v0                  = Decimal.pow(scaled_st_crW2, '0.5');
+                scaled_st_crW1      = v0;
+
+                v0                  = Decimal.pow(rescaled_st_crW2, '0.5');
+                rescaled_st_crW1    = v0;
+
+                v0                  = Decimal.div(scaled_st_c, scaled_st_crL1);
+                scaled_st_ccrL1ps   = v0;
+
+                v0                  = Decimal.div(rescaled_st_c, rescaled_st_crL1);
+                rescaled_st_ccrL1ps = v0;
+
+                v0                  = Decimal.div(scaled_st_c, scaled_st_crW1);
+                scaled_st_ccrW1ps   = v0;
+
+                v0                  = Decimal.div(rescaled_st_c, rescaled_st_crW1);
+                rescaled_st_ccrW1ps = v0;
+
+                v0                  = Decimal.div(scaled_st_ccrL1ps, pi2);
+                scaled_st_freqL1    = v0;
+
+                v0                  = Decimal.div(rescaled_st_ccrL1ps, pi2);
+                rescaled_st_freqL1  = v0;
+
+                v0                  = Decimal.div(scaled_st_ccrW1ps, pi2);
+                scaled_st_freqW1    = v0;
+
+                v0                  = Decimal.div(rescaled_st_ccrW1ps, pi2);
+                rescaled_st_freqW1  = v0;
+
+                v0                  = Decimal.div(scaled_st_c, scaled_st_freqL1);
+                scaled_st_lmdaL1    = v0;
+
+                v0                  = Decimal.div(scaled_st_c, scaled_st_freqW1);
+                scaled_st_lmdaW1    = v0;
+
+                v0                  = Decimal.div(scaled_st_c, scaled_st_freqL2);
+                scaled_st_lmdaL2    = v0;
+
+                v0                  = Decimal.div(scaled_st_c, scaled_st_freqW2);
+                scaled_st_lmdaW2    = v0;
+
+                v0                  = Decimal.div(rescaled_st_c, rescaled_st_freqL1);
+                rescaled_st_lmdaL1  = v0;
+
+                v0                  = Decimal.div(rescaled_st_c, rescaled_st_freqW1);
+                rescaled_st_lmdaW1  = v0;
+
+                v0                  = Decimal.div(rescaled_st_c, rescaled_st_freqL2);
+                rescaled_st_lmdaL2  = v0;
+
+                v0                  = Decimal.div(rescaled_st_c, rescaled_st_freqW2);
+                rescaled_st_lmdaW2  = v0;
+/////////////////////////////////////////////////////////////////////////////////////////////////
+                v0                  = Decimal.div(scaled_st_lp, '2e-35');
+                v1                  = Decimal.pow(v0, '2.0');
+                v0                  = Decimal.div(scaled_st_wp, '2e-35');
+                v2                  = Decimal.pow(v0, '2.0');
+                v3                  = Decimal.sub(v2, v1);
+                v4                  = Decimal.pow(v3, '0.5');
+                v5                  = Decimal.mul(v4, '1e-35');
+                scaled_ts_crL2      = v5;
+
+                v6                  = Decimal.mul(scaled_ts_crL2, '2.0');
+                scaled_ts_lp        = v6;
+/////////////////////////////////////////////////////////////////////////////////////////////////
+                v0                  = Decimal.div(scaled_ts_lp,'299792458');
+                scaled_ts_tp0       = v0;
+
+                v0                  = Decimal.mul(scaled_ts_tp0, c_slope0);
+                scaled_ts_tp        = v0;
+
+                c_slope0            = '1.0';
+
+                v0                  = Decimal.div(scaled_ts_lp, scaled_ts_tp);
+                scaled_ts_c         = v0;
+
+                v0                  = Decimal.div(scaled_ts_c, c_slope1);
+                rescaled_ts_c       = v0;
+
+                v0                  = Decimal.div(c_pivot, rescaled_ts_c);
+                rescaled_ts_hbar    = v0;
+
+                v0                  = Decimal.mul(rescaled_ts_hbar, pi2);
+                rescaled_ts_h       = v0;
+
+                v0                  = Decimal.mul(rescaled_ts_hbar, c_slope2);
+                scaled_ts_hbar      = v0;
+
+                v0                  = Decimal.mul(scaled_ts_hbar, pi2);
+                scaled_ts_h         = v0;
+
+                v0                  = Decimal.div(scaled_ts_lp, Limita0);
+                scm_ts              = v0;
+
+                v0                  = Decimal.div(scm_ts, c_slope1);
+                scs_ts              = v0;
+
+                v0                  = Decimal.div(1, scs_ts);
+                sck_ts              = v0;
+
+                v0                  = Decimal.div(scaled_ts_lp, Limitb0);
+                v1                  = Decimal.div(v0, c_slope1);
+                sce_ts              = v1;
+
+                v0                  = Decimal.div(scaled_ts_lp, scm_ts);
+                rescaled_ts_lp      = v0;
+
+                v0                  = Decimal.div(rescaled_ts_lp, rescaled_ts_c);
+                rescaled_ts_tp      = v0;
+
+                v0                  = Decimal.pow(scaled_ts_lp, 2);
+                v1                  = Decimal.div(v0, '1e-35');
+                scaled_ts_wp        = v1;
+
+                v0                  = Decimal.pow(rescaled_ts_lp, 2);
+                v1                  = Decimal.div(v0, '1e-35');
+                rescaled_ts_wp      = v1;
+
+                v0                  = Decimal.pow(scaled_ts_lp, 2);
+                v1                  = Decimal.pow(scaled_ts_c, 3);
+                v2                  = Decimal.mul(v0, v1);
+                v3                  = Decimal.div(v2, scaled_ts_hbar);
+                scaled_ts_G         = v3;
+
+                v0                  = Decimal.pow(rescaled_ts_lp, 2);
+                v1                  = Decimal.pow(rescaled_ts_c, 3);
+                v2                  = Decimal.mul(v0, v1);
+                v3                  = Decimal.div(v2, rescaled_ts_hbar);
+                rescaled_ts_G       = v3;
+
+                v0                  = Decimal.mul(scaled_ts_hbar, scaled_ts_c);
+                v1                  = Decimal.div(v0, scaled_ts_G);
+                v2                  = Decimal.pow(v1, 0.5);
+                scaled_ts_mp        = v2;
+
+                v0                  = Decimal.mul(rescaled_ts_hbar, rescaled_ts_c);
+                v1                  = Decimal.div(v0, rescaled_ts_G);
+                v2                  = Decimal.pow(v1, 0.5);
+                rescaled_ts_mp      = v2;
+
+                v0                  = Decimal.pow('1e-7', 0.5);
+                scaled_ts_roke      = v0;
+
+                v0                  = Decimal.div(scaled_ts_roke, scm_ts);
+                rescaled_ts_roke    = v0;
+
+                v0                  = Decimal.mul(sro2, '1e-19');
+                rescaled_ts_uae     = v0;
+
+                v0                  = Decimal.pow(sck_ts,-1);
+                v1                  = Decimal.pow(scm_ts,-2);
+                v2                  = Decimal.pow(scs_ts, 2);
+                v3                  = Decimal.mul(v0, v1);
+                v4                  = Decimal.mul(v3, v2);
+                v5                  = Decimal.mul(rescaled_ts_uae, v4);
+                scaled_ts_uae       = v5;
+
+                v0                  = Decimal.mul(rescaled_ts_uae, sce_ts);
+                rescaled_ts_ae      = v0;
+
+                v0                  = Decimal.mul(scaled_ts_uae, sce_ts);
+                scaled_ts_ae        = v0;
+
+                v0                  = Decimal.pow(rescaled_ts_uae, -1);
+                rescaled_ts_uaC     = v0;
+
+                v0                  = Decimal.pow(rescaled_ts_ae, -1);
+                rescaled_ts_aC      = v0;
+
+                v0                  = Decimal.pow(scaled_ts_uae, -1);
+                scaled_ts_uaC       = v0;
+
+                v0                  = Decimal.pow(scaled_ts_ae, -1);
+                scaled_ts_aC        = v0;
+
+                rescaled_ts_uaeV    = rescaled_ts_uae;
+                rescaled_ts_aeV     = rescaled_ts_ae;
+                scaled_ts_uaeV      = scaled_ts_uae;
+                scaled_ts_aeV       = scaled_ts_ae;
+                rescaled_ts_uaJ     = rescaled_ts_uaC;
+                rescaled_ts_aJ      = rescaled_ts_aC;
+                scaled_ts_uaJ       = scaled_ts_uaC;
+                scaled_ts_aJ        = scaled_ts_aC;
+
+                v0                  = Decimal.pow(sck_ts,-3);
+                v1                  = Decimal.pow(scm_ts,-3);
+                v2                  = Decimal.pow(scs_ts, 4);
+                v3                  = Decimal.mul(v0, v1);
+                v4                  = Decimal.mul(v3, v2);
+                scaling_a           = v4;
+
+                v0                  = Decimal.mul(rescaled_ts_uae, rescaled_ts_roke);
+                v1                  = Decimal.pow(v0, 2);
+                v2                  = Decimal.mul(v1, rescaled_ts_c);
+                v3                  = Decimal.div(v2, rescaled_ts_hbar);
+                rescaled_ts_uaa     = v3;
+
+                v0                  = Decimal.mul(rescaled_ts_ae, rescaled_ts_roke);
+                v1                  = Decimal.pow(v0, 2);
+                v2                  = Decimal.mul(v1, rescaled_ts_c);
+                v3                  = Decimal.div(v2, rescaled_ts_hbar);
+                rescaled_ts_aa      = v3;
+
+                v0                  = Decimal.mul(scaled_ts_uae, scaled_ts_roke);
+                v1                  = Decimal.pow(v0, 2);
+                v2                  = Decimal.mul(v1, scaled_ts_c);
+                v3                  = Decimal.div(v2, scaled_ts_hbar);
+                scaled_ts_uaa       = v3;
+
+                v0                  = Decimal.mul(scaled_ts_ae, scaled_ts_roke);
+                v1                  = Decimal.pow(v0, 2);
+                v2                  = Decimal.mul(v1, scaled_ts_c);
+                v3                  = Decimal.div(v2, scaled_ts_hbar);
+                scaled_ts_aa        = v3;
+
+                v0                  = Decimal.mul(rescaled_ts_uaa, rescaled_ts_G);
+                v1                  = Decimal.div(1, v0);
+                rescaled_ts_1ouaaG  = v1;
+
+                v0                  = Decimal.mul(rescaled_ts_aa, rescaled_ts_G);
+                v1                  = Decimal.div(1, v0);
+                rescaled_ts_1oaaG   = v1;
+
+                v0                  = Decimal.mul(scaled_ts_uaa, scaled_ts_G);
+                v1                  = Decimal.div(1, v0);
+                scaled_ts_1ouaaG    = v1;
+
+                v0                  = Decimal.mul(scaled_ts_aa, scaled_ts_G);
+                v1                  = Decimal.div(1, v0);
+                scaled_ts_1oaaG     = v1;
+
+                v0                  = Decimal.pow(rescaled_ts_roke, 2);
+                v1                  = Decimal.mul(4, pi1);
+                v2                  = Decimal.mul(v1, v0);
+                rescaled_ts_μ0      = v2;
+
+                v2                  = Decimal.pow(rescaled_ts_c, 2);
+                v3                  = Decimal.mul(v2, v0);
+                rescaled_ts_ke      = v3;
+
+                v3                  = Decimal.div(1, v2);
+                v4                  = Decimal.div(v3, rescaled_ts_μ0);
+                rescaled_ts_ε0      = v4;
+
+                v0                  = Decimal.mul(rescaled_ts_ε0, rescaled_ts_c);
+                v1                  = Decimal.div(1, v0);
+                rescaled_ts_Z0      = v1;
+
+                rescaled_ts_Ta0     = rescaled_ts_Z0;
+
+                v0                  = Decimal.pow(scaled_ts_roke, 2);
+                v1                  = Decimal.mul(4, pi1);
+                v2                  = Decimal.mul(v1, v0);
+                scaled_ts_μ0        = v2;
+
+                v2                  = Decimal.pow(scaled_ts_c, 2);
+                v3                  = Decimal.mul(v2, v0);
+                scaled_ts_ke        = v3;
+
+                v3                  = Decimal.div(1, v2);
+                v4                  = Decimal.div(v3, scaled_ts_μ0);
+                scaled_ts_ε0        = v4;
+
+                v0                  = Decimal.mul(scaled_ts_ε0, scaled_ts_c);
+                v1                  = Decimal.div(1, v0);
+                scaled_ts_Z0        = v1;
+
+                scaled_ts_Ta0       = scaled_ts_Z0;
+
+                v0                  = Decimal.mul(scaled_ts_ae, scaled_ts_ae);
+                v1                  = Decimal.div(scaled_ts_h, v0);
+                scaled_ts_Rk        = v1;
+
+                v0                  = Decimal.div('2.0', scaled_ts_Rk);
+                scaled_ts_G0        = v0;
+
+                v0                  = Decimal.mul('2.0', scaled_ts_ae);
+                v1                  = Decimal.div(v0, scaled_ts_h);
+                scaled_ts_Kj        = v1;
+
+                v0                  = Decimal.mul(rescaled_ts_ae, rescaled_ts_ae);
+                v1                  = Decimal.div(rescaled_ts_h, v0);
+                rescaled_ts_Rk      = v1;
+
+                v0                  = Decimal.div('2.0', rescaled_ts_Rk);
+                rescaled_ts_G0      = v0;
+
+                v0                  = Decimal.mul('2.0', rescaled_ts_ae);
+                v1                  = Decimal.div(v0, rescaled_ts_h);
+                rescaled_ts_Kj      = v1;
+
+                v0                  = Decimal.div(rescaled_ts_lp, '2.0');
+                rescaled_ts_crL2    = v0;
+
+                v0                  = Decimal.div(scaled_ts_wp, pi1);					
+                scaled_ts_crW2      = Decimal.pow(v0, '0.5');
+
+                v0                  = Decimal.div(rescaled_ts_wp, pi1);
+                rescaled_ts_crW2    = Decimal.pow(v0, '0.5');
+
+                v0                  = Decimal.div(scaled_ts_c, scaled_ts_crL2);
+                scaled_ts_ccrL2ps   = v0;
+
+                v0                  = Decimal.div(rescaled_ts_c, rescaled_ts_crL2);
+                rescaled_ts_ccrL2ps = v0;
+
+                v0                  = Decimal.div(scaled_ts_c, scaled_ts_crW2);
+                scaled_ts_ccrW2ps   = v0;
+
+                v0                  = Decimal.div(rescaled_ts_c, rescaled_ts_crW2);
+                rescaled_ts_ccrW2ps = v0;
+
+                v0                  = Decimal.div(scaled_ts_ccrL2ps, pi2);
+                scaled_ts_freqL2    = v0;
+
+                v0                  = Decimal.div(rescaled_ts_ccrL2ps, pi2);
+                rescaled_ts_freqL2  = v0;
+
+                v0                  = Decimal.div(scaled_ts_ccrW2ps, pi2);
+                scaled_ts_freqW2    = v0;
+
+                v0                  = Decimal.div(rescaled_ts_ccrW2ps, pi2);
+                rescaled_ts_freqW2  = v0;
+
+                v0                  = Decimal.pow(scaled_ts_crL2, '0.5');
+                scaled_ts_crL1      = v0;
+
+                v0                  = Decimal.pow(rescaled_ts_crL2, '0.5');
+                rescaled_ts_crL1    = v0;
+
+                v0                  = Decimal.div(scaled_ts_crW2, '0.5');
+                scaled_ts_crW1      = v0;
+
+                v0                  = Decimal.div(rescaled_ts_crW2, '0.5');
+                rescaled_ts_crW1    = v0;
+
+                v0                  = Decimal.div(scaled_st_c, scaled_st_crL1);
+                scaled_ts_ccrL1ps   = v0;
+
+                v0                  = Decimal.div(rescaled_st_c, rescaled_st_crL1);
+                rescaled_ts_ccrL1ps = v0;
+
+                v0                  = Decimal.div(scaled_st_c, scaled_st_crW1);
+                scaled_ts_ccrW1ps   = v0;
+
+                v0                  = Decimal.div(rescaled_st_c, rescaled_st_crW1);
+                rescaled_ts_ccrW1ps = v0;
+
+                v0                  = Decimal.div(scaled_st_ccrL1ps, pi2);
+                scaled_ts_freqL1    = v0;
+
+                v0                  = Decimal.div(rescaled_st_ccrL1ps, pi2);
+                rescaled_ts_freqL1  = v0;
+
+                v0                  = Decimal.div(scaled_st_ccrW1ps, pi2);
+                scaled_ts_freqW1    = v0;
+
+                v0                  = Decimal.div(rescaled_st_ccrW1ps, pi2);
+                rescaled_ts_freqW1  = v0;
+
+                v0                  = Decimal.div(scaled_ts_c, scaled_ts_freqL1);
+                scaled_ts_lmdaL1    = v0;
+
+                v0                  = Decimal.div(scaled_ts_c, scaled_ts_freqW1);
+                scaled_ts_lmdaW1    = v0;
+
+                v0                  = Decimal.div(scaled_ts_c, scaled_ts_freqL2);
+                scaled_ts_lmdaL2    = v0;
+
+                v0                  = Decimal.div(scaled_ts_c, scaled_ts_freqW2);
+                scaled_ts_lmdaW2    = v0;
+
+                v0                  = Decimal.div(rescaled_ts_c, rescaled_ts_freqL1);
+                rescaled_ts_lmdaL1  = v0;
+
+                v0                  = Decimal.div(rescaled_ts_c, rescaled_ts_freqW1);
+                rescaled_ts_lmdaW1  = v0;
+
+                v0                  = Decimal.div(rescaled_ts_c, rescaled_ts_freqL2);
+                rescaled_ts_lmdaL2  = v0;
+
+                v0                  = Decimal.div(rescaled_ts_c, rescaled_ts_freqW2);
+                rescaled_ts_lmdaW2  = v0;
+
+                X5                  = X1;
+                Y5                  = Decimal.div('1.0', scm_ts);
+                slope_X6            = Decimal.div(Y5, X5);
+                X6                  = Decimal.div('1.0', slope_X6);
+                Y6                  = Decimal.div(scs_ts, scm_ts);
+                v0                  = Decimal.sub(Y6, Y5);
+                v1                  = Decimal.sub(X6, X5);
+                slope_X7            = Decimal.div(v0, v1);
+                X7                  = Decimal.div('1.0', slope_X7);
+                v0                  = Decimal.mul(X5, slope_X7);
+                Y4                  = Decimal.sub(Y5, v0);
+                v0                  = Decimal.mul(X7, slope_X7);
+                Y7                  = Decimal.add(v0, Y4);
+
+            var scaled_st_lv         = new Decimal(0);
+            var rescaled_st_lv       = new Decimal(0);
+            var scaled_ts_lv         = new Decimal(0);
+            var rescaled_ts_lv       = new Decimal(0);
+            var scaled_st_av         = new Decimal(0);
+            var rescaled_st_av       = new Decimal(0);
+            var scaled_ts_av         = new Decimal(0);
+            var rescaled_ts_av       = new Decimal(0);
+
+            var scaled_st_lvcrL2ps   = new Decimal(0);
+            var rescaled_st_lvcrL2ps = new Decimal(0);
+            var scaled_ts_lvcrL2ps   = new Decimal(0);
+            var rescaled_ts_lvcrL2ps = new Decimal(0);
+            var scaled_st_avcrL2ps   = new Decimal(0);
+            var rescaled_st_avcrL2ps = new Decimal(0);
+            var scaled_ts_avcrL2ps   = new Decimal(0);
+            var rescaled_ts_avcrL2ps = new Decimal(0);
+
+            var control5            = new Decimal(0);
+                v0                  = Decimal.sub(sc50v, 99);
+                v0                  = Decimal.mul(v0, '1e-2');
+                v1                  = v0;
+                v0                  = Decimal.sub(sc51v, 99);
+                v0                  = Decimal.mul(v0, '1e-4');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc52v, 99);
+                v0                  = Decimal.mul(v0, '1e-6');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc53v, 99);
+                v0                  = Decimal.mul(v0, '1e-8');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc54v, 99);
+                v0                  = Decimal.mul(v0, '1e-10');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc55v, 99);
+                v0                  = Decimal.mul(v0, '1e-12');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc56v, 99);
+                v0                  = Decimal.mul(v0, '1e-14');
+                v1                  = Decimal.add(v1, v0);
+                v0                  = Decimal.sub(sc57v, 100);
+                v0                  = Decimal.mul(v0, '1e-16');
+                control5            = Decimal.add(v1, v0);
+                control5            = Decimal.add(control5, '1.0');
+                v0                  = Decimal.pow(control5, '0.5');
+            scaled_st_lv            = Decimal.mul(scaled_st_c, v0);
+            v0 = Decimal.div(scaled_st_lv, scaled_st_c);
+            v1 = Decimal.mul(v0, scaled_st_ccrL2ps);
+            scaled_st_lvcrL2ps      = v1;
+            scaled_ts_avcrL2ps      = v1;
+            v2 = Decimal.pow(v1, '2.0');
+            v3 = Decimal.pow(scaled_st_ccrL2ps, '2.0');
+            v4 = Decimal.sub(v3, v2);
+            scaled_ts_lvcrL2ps      = Decimal.pow(v4,'0.5');
+            scaled_st_avcrL2ps      = scaled_ts_lvcrL2ps;
+            v5 = Decimal.pow(v4, '0.5');
+            scaled_st_av = Decimal.div(v5, pi2);
+            scaled_ts_av = Decimal.div(v1, pi2);
+            scaled_ts_lv = Decimal.mul(v5, scaled_ts_crL2);
+
+            vtblx.rows[0].cells[0].innerHTML = "control";
+            vtblx.rows[0].cells[2].innerHTML = control5.toPrecision(16, 4);
+            vtblx.rows[0].cells[3].innerHTML = "unitless";
+            vtblx.rows[0].cells[4].innerHTML = "0.5 is thermal equilibrium";
+
+            vtblx.rows[1].cells[0].innerHTML = "*******************";
+            vtblx.rows[1].cells[1].innerHTML = "***";
+            vtblx.rows[1].cells[2].innerHTML = "********************************************************************************************************";
+            vtblx.rows[1].cells[3].innerHTML = "************";
+            vtblx.rows[1].cells[4].innerHTML = "********************************************";
+
+            var radius               = new Decimal(0); 
+            var angle                = new Decimal(0);
+            var chord                = new Decimal(0);
+//          var arclength            = new Decimal(scaled_[st|ts]_lp);
+            var scaled_st_curv       = new Decimal(0);
+            var scaled_ts_curv       = new Decimal(0);
+//          var rescaled_st_curv     = new Decimal(0);
+//          var rescaled_ts_curv     = new Decimal(0);
+
+            v0 = Decimal.mul(control5, '10');
+            v1 = Decimal.pow('2.0', v0);
+            v2 = Decimal.div(scaled_st_lp, pi1);
+            radius = Decimal.mul(v2, v1);
+            angle = Decimal.div(pi1, v1);
+
+            var fact02               = new Decimal('2.0');
+            var fact04               = new Decimal('24.0');
+            var fact06               = new Decimal('720.0');
+            var fact08               = new Decimal('40320.0');
+
+            var fact10               = new Decimal('3628800.0');
+            var fact12               = new Decimal('479001600.0');
+            var fact14               = new Decimal('87178291200.0');
+            var fact16               = new Decimal('20922789888000.0');
+
+            var fact18               = new Decimal('6402373705728000.0');
+            var fact20               = new Decimal('2432902008176640000.0');
+            var fact22               = new Decimal('1124000727777607680000.0');
+            var fact24               = new Decimal('620448401733239439360000.0');
+
+            var fact26               = new Decimal('403291461126605635584000000.0');
+            var fact28               = new Decimal('304888344611713860501504000000.0');
+            var fact30               = new Decimal('26525285981219105863630848000000.0');
+            var fact32               = new Decimal('26313083693369353016721801216000000.0');
+
+            var cosine               = new Decimal('1.0');
+
+            v2 = Decimal.pow(angle, '2.0');
+            v3 = Decimal.div(v2, fact02);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '4.0');
+            v3 = Decimal.div(v2, fact04);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '6.0');
+            v3 = Decimal.div(v2, fact06);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '8.0');
+            v3 = Decimal.div(v2, fact08);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '10.0');
+            v3 = Decimal.div(v2, fact10);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '12.0');
+            v3 = Decimal.div(v2, fact12);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '14.0');
+            v3 = Decimal.div(v2, fact14);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '16.0');
+            v3 = Decimal.div(v2, fact16);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '18.0');
+            v3 = Decimal.div(v2, fact18);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '20.0');
+            v3 = Decimal.div(v2, fact20);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '22.0');
+            v3 = Decimal.div(v2, fact22);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '24.0');
+            v3 = Decimal.div(v2, fact24);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '26.0');
+            v3 = Decimal.div(v2, fact26);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '28.0');
+            v3 = Decimal.div(v2, fact28);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '30.0');
+            v3 = Decimal.div(v2, fact30);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '32.0');
+            v3 = Decimal.div(v2, fact32);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.div(scaled_st_lp, pi1);
+            v3 = Decimal.mul(v2, v1);
+            v4 = Decimal.pow(v3, '2.0');
+            v5 = Decimal.mul(v4, '2.0');
+            v6 = Decimal.mul(v5, cosine);
+            v7 = Decimal.sub(v5, v6);
+            chord = Decimal.pow(v7, '0.5');
+
+            scaled_st_curv = Decimal.div(chord, scaled_st_lp);
+            vtblx.rows[2].cells[0].innerHTML = "curvature st";
+            vtblx.rows[2].cells[2].innerHTML = scaled_st_curv.toPrecision(6, 1);
+            vtblx.rows[2].cells[3].innerHTML = "unitless";
+            vtblx.rows[2].cells[4].innerHTML = "";
+
+            v7 = Decimal.sub('1.0', control5);
+            v0 = Decimal.mul(v7, '10');
+            v1 = Decimal.pow('2.0', v0);
+            v2 = Decimal.div(scaled_st_lp, pi1);
+            radius = Decimal.mul(v2, v1);
+            angle = Decimal.div(pi1, v1);
+
+            var cosine               = new Decimal('1.0');
+
+            v2 = Decimal.pow(angle, '2.0');
+            v3 = Decimal.div(v2, fact02);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '4.0');
+            v3 = Decimal.div(v2, fact04);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '6.0');
+            v3 = Decimal.div(v2, fact06);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '8.0');
+            v3 = Decimal.div(v2, fact08);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '10.0');
+            v3 = Decimal.div(v2, fact10);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '12.0');
+            v3 = Decimal.div(v2, fact12);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '14.0');
+            v3 = Decimal.div(v2, fact14);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '16.0');
+            v3 = Decimal.div(v2, fact16);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '18.0');
+            v3 = Decimal.div(v2, fact18);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '20.0');
+            v3 = Decimal.div(v2, fact20);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '22.0');
+            v3 = Decimal.div(v2, fact22);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '24.0');
+            v3 = Decimal.div(v2, fact24);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '26.0');
+            v3 = Decimal.div(v2, fact26);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '28.0');
+            v3 = Decimal.div(v2, fact28);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.pow(angle, '30.0');
+            v3 = Decimal.div(v2, fact30);
+            cosine = Decimal.sub(cosine, v3);
+
+            v2 = Decimal.pow(angle, '32.0');
+            v3 = Decimal.div(v2, fact32);
+            cosine = Decimal.add(cosine, v3);
+
+            v2 = Decimal.div(scaled_st_lp, pi1);
+            v3 = Decimal.mul(v2, v1);
+            v4 = Decimal.pow(v3, '2.0');
+            v5 = Decimal.mul(v4, '2.0');
+            v6 = Decimal.mul(v5, cosine);
+            v7 = Decimal.sub(v5, v6);
+            chord = Decimal.pow(v7, '0.5');
+
+            scaled_ts_curv = Decimal.div(chord, scaled_ts_lp);
+            vtblx.rows[3].cells[0].innerHTML = "curvature ts";
+            vtblx.rows[3].cells[2].innerHTML = scaled_ts_curv.toPrecision(6, 1);
+            vtblx.rows[3].cells[3].innerHTML = "unitless";
+            vtblx.rows[3].cells[4].innerHTML = "";
+
+            vtblx.rows[4].cells[0].innerHTML = "cast radian";
+            vtblx.rows[4].cells[2].innerHTML = scaled_st_crL2.toPrecision(88, 4);
+            vtblx.rows[4].cells[3].innerHTML = "meters";
+            vtblx.rows[4].cells[4].innerHTML = "For use with Pythagorean Quantum Velocity";
+
+            vtblx.rows[5].cells[0].innerHTML = "tangent velocities, st and ts";
+            vtblx.rows[5].cells[2].innerHTML = scaled_st_ccrL2ps.toPrecision(88, 4);
+            vtblx.rows[5].cells[3].innerHTML = "c.r. s^-1";
+            vtblx.rows[5].cells[4].innerHTML = "c^2 = tangent_v^2 = linear_v^2 + angular_v^2,<br>where all velocities are in 'cast radians' per second";
+
+            vtblx.rows[6].cells[0].innerHTML = "linear velocity st";
+            vtblx.rows[6].cells[2].innerHTML = scaled_st_lvcrL2ps.toPrecision(88, 4);
+            vtblx.rows[6].cells[3].innerHTML = "c.r. s^-1";
+            vtblx.rows[6].cells[4].innerHTML = "";
+
+            vtblx.rows[7].cells[0].innerHTML = "linear velocity ts";
+            vtblx.rows[7].cells[2].innerHTML = scaled_ts_lvcrL2ps.toPrecision(88, 4);
+            vtblx.rows[7].cells[3].innerHTML = "c.r. s^-1";
+            vtblx.rows[7].cells[4].innerHTML = "";
+
+            vtblx.rows[8].cells[0].innerHTML = "angular velocity st";
+            vtblx.rows[8].cells[2].innerHTML = scaled_st_avcrL2ps.toPrecision(88, 4);
+            vtblx.rows[8].cells[3].innerHTML = "c.r. s^-1";
+            vtblx.rows[8].cells[4].innerHTML = "";
+
+            vtblx.rows[9].cells[0].innerHTML = "angular velocity ts";
+            vtblx.rows[9].cells[2].innerHTML = scaled_ts_avcrL2ps.toPrecision(88, 4);
+            vtblx.rows[9].cells[3].innerHTML = "c.r. s^-1";
+            vtblx.rows[9].cells[4].innerHTML = "";
+
+            vtblx.rows[10].cells[0].innerHTML = "frequency st";
+            vtblx.rows[10].cells[2].innerHTML = scaled_st_av.toPrecision(88, 4);
+            vtblx.rows[10].cells[3].innerHTML = "cycles s^-1";
+            vtblx.rows[10].cells[4].innerHTML = "";
+
+            vtblx.rows[11].cells[0].innerHTML = "frequency ts";
+            vtblx.rows[11].cells[2].innerHTML = scaled_ts_av.toPrecision(88, 4);
+            vtblx.rows[11].cells[3].innerHTML = "cycles s^-1";
+            vtblx.rows[11].cells[4].innerHTML = "";
+
+            vtblx.rows[12].cells[0].innerHTML = "linear velocity st";
+            vtblx.rows[12].cells[2].innerHTML = scaled_st_lv.toPrecision(88, 4);
+            vtblx.rows[12].cells[3].innerHTML = "m s^-1";
+            vtblx.rows[12].cells[4].innerHTML = "";
+
+            vtblx.rows[13].cells[0].innerHTML = "linear velocity ts";
+            vtblx.rows[13].cells[2].innerHTML = scaled_ts_lv.toPrecision(88, 4);
+            vtblx.rows[13].cells[3].innerHTML = "m s^-1";
+            vtblx.rows[13].cells[4].innerHTML = "";
+
+            vtblx.rows[14].cells[0].innerHTML = "c";
+            vtblx.rows[14].cells[2].innerHTML = scaled_st_c.toPrecision(88, 4);
+            vtblx.rows[14].cells[3].innerHTML = "m s^-1";
+            vtblx.rows[14].cells[4].innerHTML = "";
+
+            v0 = Decimal.pow(scaled_st_lv, '2.0');
+            v1 = Decimal.pow(scaled_st_c, '2.0');
+            v2 = Decimal.div(v0, v1);
+//          v3 = Decimal.sub('1.0', v2);
+            v4 = Decimal.pow(v2, '0.5');
+            vtblx.rows[15].cells[0].innerHTML = "eccentricity st";
+            vtblx.rows[15].cells[2].innerHTML = v4.toPrecision(88, 4);
+            vtblx.rows[15].cells[3].innerHTML = "unitless";
+            vtblx.rows[15].cells[4].innerHTML = "(v^2/c^2)^(1/2) = (b^2/a^2)^(1/2)";
+
+            v0 = Decimal.pow(scaled_st_lv, '2.0');
+            v1 = Decimal.pow(scaled_st_c, '2.0');
+            v2 = Decimal.div(v0, v1);
+            v3 = Decimal.sub('1.0', v2);
+            v4 = Decimal.pow(v3, '0.5');
+            vtblx.rows[16].cells[0].innerHTML = "eccentricity ts";
+            vtblx.rows[16].cells[2].innerHTML = v4.toPrecision(88, 4);
+            vtblx.rows[16].cells[3].innerHTML = "unitless";
+            vtblx.rows[16].cells[4].innerHTML = "1/gamma = (1-(v^2/c^2))^(1/2) = (1-(b^2/a^2))^(1/2)";
+
+            v0 = Decimal.div(scaled_st_c, scaled_st_lv);
+            vtblx.rows[17].cells[0].innerHTML = "refractive index st";
+            vtblx.rows[17].cells[2].innerHTML = v0.toPrecision(88, 4);
+            vtblx.rows[17].cells[3].innerHTML = "unitless";
+            vtblx.rows[17].cells[4].innerHTML = "c/velocity";
+
+            v1 = Decimal.div(scaled_ts_c, scaled_ts_lv);
+            vtblx.rows[18].cells[0].innerHTML = "refractive index ts";
+            vtblx.rows[18].cells[2].innerHTML = v1.toPrecision(88, 4);
+            vtblx.rows[18].cells[3].innerHTML = "unitless";
+            vtblx.rows[18].cells[4].innerHTML = "c/velocity";
+
+            v2 = Decimal.div(scaled_st_Z0, v0);
+            vtblx.rows[19].cells[0].innerHTML = "impedance st";
+            vtblx.rows[19].cells[2].innerHTML = v2.toPrecision(88, 4);
+            vtblx.rows[19].cells[3].innerHTML = "Ohms";
+            vtblx.rows[19].cells[4].innerHTML = "Z0 st/refractive index st";
+
+            v3 = Decimal.div(scaled_ts_Z0, v1);
+            vtblx.rows[20].cells[0].innerHTML = "impedance ts";
+            vtblx.rows[20].cells[2].innerHTML = v3.toPrecision(88, 4);
+            vtblx.rows[20].cells[3].innerHTML = "Ohms";
+            vtblx.rows[20].cells[4].innerHTML = "Z0 ts/refractive index ts";
+
+            v0 = Decimal.sub(v2, scaled_st_Z0);
+            v1 = Decimal.add(v2, scaled_st_Z0);
+            v6 = Decimal.div(v0, v1);
+            vtblx.rows[21].cells[0].innerHTML = "reflection coef st";
+            vtblx.rows[21].cells[2].innerHTML = v6.toPrecision(88, 4);
+            vtblx.rows[21].cells[3].innerHTML = "unitless";
+            vtblx.rows[21].cells[4].innerHTML = "(Zst-Z0st)/(Zst+Z0st)";
+
+            v0 = Decimal.sub(v3, scaled_ts_Z0);
+            v1 = Decimal.add(v3, scaled_ts_Z0);
+            v7 = Decimal.div(v0, v1);
+            vtblx.rows[22].cells[0].innerHTML = "reflection coef ts";
+            vtblx.rows[22].cells[2].innerHTML = v7.toPrecision(88, 4);
+            vtblx.rows[22].cells[3].innerHTML = "unitless";
+            vtblx.rows[22].cells[4].innerHTML = "(Zts-Z0ts)/(Zts+Z0ts)";
+
+            v0 = Decimal.abs(v6);
+            v1 = Decimal.add('1.0', v0);
+            v2 = Decimal.sub('1.0', v0);
+            v6 = Decimal.div(v1, v2);
+            vtblx.rows[23].cells[0].innerHTML = "SWR st";
+            vtblx.rows[23].cells[2].innerHTML = v6.toPrecision(88, 4);
+            vtblx.rows[23].cells[3].innerHTML = "unitless";
+            vtblx.rows[23].cells[4].innerHTML = "(1+|reflection coef st|)/(1-|reflection coef st|)";
+
+            v0 = Decimal.abs(v7);
+            v1 = Decimal.add('1.0', v0);
+            v2 = Decimal.sub('1.0', v0);
+            v7 = Decimal.div(v1, v2);
+            vtblx.rows[24].cells[0].innerHTML = "SWR ts";
+            vtblx.rows[24].cells[2].innerHTML = v7.toPrecision(88, 4);
+            vtblx.rows[24].cells[3].innerHTML = "unitless";
+            vtblx.rows[24].cells[4].innerHTML = "(1+|reflection coef ts|)/(1-|reflection coef ts|)";
+
+            v7 = Decimal.mul(scaled_st_hbar, scaled_st_avcrL2ps);
+
+            vtblx.rows[25].cells[0].innerHTML = "hbar omega st";
+            vtblx.rows[25].cells[2].innerHTML = v7.toPrecision(88, 4);
+            vtblx.rows[25].cells[3].innerHTML = "Joules";
+            vtblx.rows[25].cells[4].innerHTML = "";
+
+            v7 = Decimal.mul(scaled_ts_hbar, scaled_ts_avcrL2ps);
+
+            vtblx.rows[26].cells[0].innerHTML = "hbar omega ts";
+            vtblx.rows[26].cells[2].innerHTML = v7.toPrecision(88, 4);
+            vtblx.rows[26].cells[3].innerHTML = "Joules";
+            vtblx.rows[26].cells[4].innerHTML = "";
+
+            v0 = Decimal.mul(scaled_st_hbar, scaled_st_avcrL2ps);
+            v1 = Decimal.mul(scaled_st_c, scaled_st_c);
+            v7 = Decimal.div(v0, v1);
+
+            vtblx.rows[27].cells[0].innerHTML = "mass st";
+            vtblx.rows[27].cells[2].innerHTML = v7.toPrecision(88, 4);
+            vtblx.rows[27].cells[3].innerHTML = "kg";
+            vtblx.rows[27].cells[4].innerHTML = "";
+
+            v0 = Decimal.mul(scaled_ts_hbar, scaled_ts_avcrL2ps);
+            v1 = Decimal.mul(scaled_ts_c, scaled_ts_c);
+            v7 = Decimal.div(v0, v1);
+
+            vtblx.rows[28].cells[0].innerHTML = "mass ts";
+            vtblx.rows[28].cells[2].innerHTML = v7.toPrecision(88, 4);
+            vtblx.rows[28].cells[3].innerHTML = "kg";
+            vtblx.rows[28].cells[4].innerHTML = "";
+        };
+        breset.onclick	= function() {
+            sc00v		= 0;
+            sc01v		= 0;
+            sc02v		= 0;
+            sc03v		= 0;
+            sc04v		= 0;
+            sc05v		= 0;
+            sc06v		= 0;
+            sc07v		= 0;
+            sc30v		= 202;
+            sc31v		= 124;
+            sc32v		= 149;
+            sc33v		= 99;
+            sc34v		= 65;
+            sc35v		= 56;
+            sc36v		= 61;
+            sc37v		= 41;
+            sc40v		= 99;
+            sc41v		= 99;
+            sc42v		= 99;
+            sc43v		= 99;
+            sc44v		= 99;
+            sc45v		= 99;
+            sc46v		= 99;
+            sc47v		= 100;
+
+            sc00.value	= 0;
+            sc01.value	= 0;
+            sc02.value	= 0;
+            sc03.value	= 0;
+            sc04.value	= 0;
+            sc05.value	= 0;
+            sc06.value	= 0;
+            sc07.value	= 0;
+            sc30.value	= 202;
+            sc31.value	= 124;
+            sc32.value	= 149;
+            sc33.value	= 99;
+            sc34.value	= 65;
+            sc35.value	= 56;
+            sc36.value	= 61;
+            sc37.value	= 41;
+            sc40.value	= 99;
+            sc41.value	= 99;
+            sc42.value	= 99;
+            sc43.value	= 99;
+            sc44.value	= 99;
+            sc45.value	= 99;
+            sc46.value	= 99;
+            sc47.value	= 100;
+            compute();
+        };
+        bspcase0.onclick = function() {
+            sc00v = 99;
+            sc01v = 99;
+            sc02v = 99;
+            sc03v = 99;
+            sc04v = 99;
+            sc05v = 99;
+            sc06v = 99;
+            sc07v = 100;
+            sc30v = 202;
+            sc31v = 198;
+            sc32v = 198;
+            sc33v = 198;
+            sc34v = 198;
+            sc35v = 198;
+            sc36v = 198;
+            sc37v = 200;
+            sc40v = 149;
+            sc41v = 99;
+            sc42v = 99;
+            sc43v = 99;
+            sc44v = 99;
+            sc45v = 99;
+            sc46v = 99;
+            sc47v = 100;
+
+            sc00.value = 99;
+            sc01.value = 99;
+            sc02.value = 99;
+            sc03.value = 99;
+            sc04.value = 99;
+            sc05.value = 99;
+            sc06.value = 99;
+            sc07.value = 100;
+            sc30.value = 202;
+            sc31.value = 198;
+            sc32.value = 198;
+            sc33.value = 198;
+            sc34.value = 198;
+            sc35.value = 198;
+            sc36.value = 198;
+            sc37.value = 200;
+            sc40.value = 149;
+            sc41.value = 99;
+            sc42.value = 99;
+            sc43.value = 99;
+            sc44.value = 99;
+            sc45.value = 99;
+            sc46.value = 99;
+            sc47.value = 100;
+            compute();
+        };
+        bspcase3.onclick = function() {
+            sc00v = 99;
+            sc01v = 99;
+            sc02v = 99;
+            sc03v = 99;
+            sc04v = 99;
+            sc05v = 99;
+            sc06v = 99;
+            sc07v = 100;
+            sc30v = 0;
+            sc31v = 0;
+            sc32v = 0;
+            sc33v = 0;
+            sc34v = 0;
+            sc35v = 0;
+            sc36v = 0;
+            sc37v = 0;
+            sc40v = 149;
+            sc41v = 99;
+            sc42v = 99;
+            sc43v = 99;
+            sc44v = 99;
+            sc45v = 99;
+            sc46v = 99;
+            sc47v = 100;
+
+            sc00.value = 99;
+            sc01.value = 99;
+            sc02.value = 99;
+            sc03.value = 99;
+            sc04.value = 99;
+            sc05.value = 99;
+            sc06.value = 99;
+            sc07.value = 100;
+            sc30.value = 0;
+            sc31.value = 0;
+            sc32.value = 0;
+            sc33.value = 0;
+            sc34.value = 0;
+            sc35.value = 0;
+            sc36.value = 0;
+            sc37.value = 0;
+            sc40.value = 149;
+            sc41.value = 99;
+            sc42.value = 99;
+            sc43.value = 99;
+            sc44.value = 99;
+            sc45.value = 99;
+            sc46.value = 99;
+            sc47.value = 100;
+            compute();
+        };
+        bmax.onclick = function() {
+            sc50v = 0;
+            sc51v = 0;
+            sc52v = 0;
+            sc53v = 0;
+            sc54v = 0;
+            sc55v = 0;
+            sc56v = 0;
+            sc57v = 0;
+
+            sc50.value = 0;
+            sc51.value = 0;
+            sc52.value = 0;
+            sc53.value = 0;
+            sc54.value = 0;
+            sc55.value = 0;
+            sc56.value = 0;
+            sc57.value = 0;
+            compute();
+        };
+        bmean.onclick = function() {
+            sc50v = 50;
+            sc51v = 0;
+            sc52v = 0;
+            sc53v = 0;
+            sc54v = 0;
+            sc55v = 0;
+            sc56v = 0;
+            sc57v = 0;
+
+            sc50.value = 50;
+            sc51.value = 0;
+            sc52.value = 0;
+            sc53.value = 0;
+            sc54.value = 0;
+            sc55.value = 0;
+            sc56.value = 0;
+            sc57.value = 0;
+            compute();
+        };
+        bmin.onclick = function() {
+            sc50v = 99;
+            sc51v = 99;
+            sc52v = 99;
+            sc53v = 99;
+            sc54v = 99;
+            sc55v = 99;
+            sc56v = 99;
+            sc57v = 100;
+
+            sc50.value = 99;
+            sc51.value = 99;
+            sc52.value = 99;
+            sc53.value = 99;
+            sc54.value = 99;
+            sc55.value = 99;
+            sc56.value = 99;
+            sc57.value = 100;
+            compute();
+        };
+        breset.onclick();
+    </SCRIPT>
+</BODY>
+</HTML>
